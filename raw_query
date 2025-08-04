@@ -1,0 +1,233 @@
+SELECT
+    [seinetraw].[scientificname] & " " & [seinetraw].[scientificnameauthorship] AS title,
+    "http://library.eiu.edu/keepupload/herbarium/pdf/" & [seinetraw].[catalogNumber] & ".pdf" AS fulltext_url,
+    [seinetraw].[thumbnailAccessURI] AS cover_image_url,
+    " " AS additional_files,
+    " " AS keywords,
+    " " AS abstract,
+    IIF(
+        [seinetraw].[recordedBy] = "Gordon C. Tucker",
+        "Gordon",
+        IIF(
+            [seinetraw].[recordedBy] = "Ebinger, John E.",
+            "John",
+            IIF(
+                [seinetraw].[recordedBy] = "Edgin, Bob, ",
+                "Bob",
+                IIF(
+                    [seinetraw].[recordedBy] = "Phillippe, Loy R.",
+                    "Loy",
+                    IIF(
+                        [seinetraw].[recordedBy] = "Thut, Hiram Frederick, 1900-1974 ",
+                        "Hiram",
+                        IIF(
+                            [seinetraw].[recordedBy] = "McClain, W. E.",
+                            "William",
+                            [seinetraw.recordedBy]
+                        )
+                    )
+                )
+            )
+        )
+    ) AS author1_fname,
+    IIF(
+        [seinetraw].[recordedBy] = "Gordon C. Tucker",
+        "C.",
+        IIF(
+            [seinetraw].[recordedBy] = "Ebinger, John E.",
+            "E.",
+            IIF(
+                [seinetraw].[recordedBy] = "Phillippe, Loy R.",
+                "R.",
+                IIF(
+                    [seinetraw].[recordedBy] = "Thut, Hiram Frederick, 1900-1974",
+                    "Frederick",
+                    IIF(
+                        [seinetraw].[recordedBy] = "McClain, W. E.",
+                        "E.",
+                        " "
+                    )
+                )
+            )
+        )
+    ) AS author1_mname,
+    IIF(
+        [seinetraw].[recordedBy] = "Gordon C. Tucker",
+        "Tucker",
+        IIF(
+            [seinetraw].[recordedBy] = "Ebinger, John E.",
+            "Ebinger",
+            IIF(
+                [seinetraw].[recordedBy] = "Edgin, Bob, ",
+                "Edgin",
+                IIF(
+                    [seinetraw].[recordedBy] = "Phillippe, Loy R.",
+                    "Phillippe",
+                    IIF(
+                        [seinetraw].[recordedBy] = "Thut, Hiram Frederick, 1900-1974",
+                        "Thut",
+                        IIF(
+                            [seinetraw].[recordedBy] = "McClain, W. E.",
+                            "McClain",
+                            " "
+                        )
+                    )
+                )
+            )
+        )
+    ) AS author1_lname,
+    " " AS author1_suffix,
+    " " AS author1_email,
+    " " AS author1_institution,
+    "FALSE" AS author1_is_corporate,
+    " " AS author2_fname,
+    " " AS author2_mname,
+    " " AS author2_lname,
+    " " AS author2_suffix,
+    " " AS author2_email,
+    " " AS author2_institution,
+    "FALSE" AS author2_is_corporate,
+    " " AS author3_fname,
+    " " AS author3_mname,
+    " " AS author3_lname,
+    " " AS author3_suffix,
+    " " AS author3_email,
+    " " AS author3_institution,
+    "FALSE" AS author3_is_corporate,
+    " " AS author4_fname,
+    " " AS author4_mname,
+    " " AS author4_lname,
+    " " AS author4_suffix,
+    " " AS author4_email,
+    " " AS author4_institution,
+    "FALSE" AS author4_is_corporate,
+    [seinetraw].[accessURI] AS accessuri,
+    " " AS anyflip_url,
+    [seinetraw].[associatedCollectors] AS associatedcollectors,
+    [seinetraw].[associatedSpecimenReference] AS associatedspecimenreference,
+    [seinetraw].[associatedTaxa] AS associatedtaxa,
+    [seinetraw].[basisOfRecord] AS basisofrecord,
+    "Botany" AS disciplines,
+    [seinetraw].[catalogNumber] AS catalognumber,
+    [seinetraw].[collectionCode] AS collectioncode,
+    [seinetraw].[comments],
+    [seinetraw].[coordinateUncertaintyInMeters] AS coordinateuncertaintyinmeters,
+    [seinetraw].[coreid],
+    [seinetraw].[country],
+    [seinetraw].[county],
+    "FALSE" AS createopenurl,
+    IIF(
+        [seinetraw].[cultivationStatus] = "1",
+        "Yes",
+        IIF(
+            [seinetraw].[cultivationStatus] = "0",
+            "No",
+            [seinetraw].[cultivationStatus]
+        )
+    ) AS cultivationstatus,
+    " " AS custom_citation,
+    [seinetraw].[dataGeneralizations] AS datageneralizations,
+    [seinetraw].[dateEntered] AS dateentered,
+    [seinetraw].[dateIdentified] AS dateidentified,
+    [seinetraw].[Day] AS [day],
+    IIF(
+        [seinetraw].[localitySecurity] = 1,
+        " ",
+        [seinetraw].[decimalLatitude]
+    ) AS decimallatitude,
+    IIF(
+        [seinetraw].[localitySecurity] = 1,
+        " ",
+        [seinetraw].[decimalLongitude]
+    ) AS decimallongitude,
+    [seinetraw].[disposition],
+    " " AS distribution_license,
+    "specimen" AS document_type,
+    [seinetraw].[duplicateQuantity] AS duplicatequantity,
+    [seinetraw].[class] AS dwcclass,
+    [seinetraw].[id] AS dwcid,
+    [seinetraw].[type] AS dwctype,
+    [seinetraw].[dynamicProperties] AS dynamicproperties,
+    [seinetraw].[endDayOfYear] AS enddayofyear,
+    [seinetraw].[establishmentMeans] AS establishmentmeans,
+    [seinetraw].[eventDate] AS eventdate,
+    [seinetraw].[family],
+    [seinetraw].[fieldNumber] AS fieldnumber,
+    " " AS footprintwkt,
+    [seinetraw].[format],
+    [seinetraw].[genus],
+    [seinetraw].[geodeticDatum] AS geodeticdatum,
+    " " AS geolocate,
+    [seinetraw].[georeferencedBy] AS georeferencedby,
+    [seinetraw].[georeferenceProtocol] AS georeferenceprotocol,
+    [seinetraw].[georeferenceRemarks] AS georeferenceremarks,
+    [seinetraw].[georeferenceSources] AS georeferencesources,
+    [seinetraw].[georeferenceVerificationStatus] AS georeferenceverificationstatus,
+    [seinetraw].[habitat],
+    [seinetraw].[identificationQualifier] AS identificationqualifier,
+    [seinetraw].[identificationReferences] AS identificationreferences,
+    [seinetraw].[identificationRemarks] AS identificationremarks,
+    [seinetraw].[identifiedBy] AS identifiedby,
+    [seinetraw].[individualCount] AS individualcount,
+    [seinetraw].[informationWithheld] AS informationwithheld,
+    [seinetraw].[infraspecificEpithet] AS infraspecificepithet,
+    [seinetraw].[institutionCode] AS institutioncode,
+    [seinetraw].[kingdom],
+    [seinetraw].[language],
+    [seinetraw].[lifestage],
+    [seinetraw].[locality],
+    [seinetraw].[localitySecurity] AS localitysecurity,
+    [seinetraw].[localitySecurityReason] AS localitysecurityreason,
+    [seinetraw].[maximumElevationInMeters] AS maximumelevationinmeters,
+    [seinetraw].[metadataDate] AS metadatadate,
+    [seinetraw].[minimumElevationInMeters] AS minimumelevationinmeters,
+    [seinetraw].[modified],
+    [seinetraw].[Month] AS [month],
+    [seinetraw].[municipality],
+    [seinetraw].[observerUid] AS observeruid,
+    [seinetraw].[occurrenceID] AS occurrenceid,
+    [seinetraw].[occurrenceRemarks] AS occurrenceremarks,
+    " " AS orcid,
+    [seinetraw].[order],
+    [seinetraw].[otherCatalogNumbers] AS othercatalognumbers,
+    " " AS peer_reviewed,
+    [seinetraw].[phylum],
+    [seinetraw].[preparations],
+    [seinetraw].[processingStatus] AS processingstatus,
+    [seinetraw].[providerManagedID] AS providermanagedid,
+    [seinetraw].[Month] & "/" & [seinetraw].[Day] & "/" & [seinetraw].[Year] AS publication_date,
+    " " AS season,
+    [seinetraw].[recordedBy] AS recordedby,
+    " " AS recordedbyid,
+    [seinetraw].[recordEnteredBy] AS recordenteredby,
+    [seinetraw].[recordID] AS recordid,
+    [seinetraw].[recordNumber] AS recordnumber,
+    [seinetraw].[references],
+    " " AS related_content,
+    [seinetraw].[reproductiveCondition] AS reproductivecondition,
+    " " AS reviewed,
+    " " AS rights,
+    " " AS samplingeffort,
+    " " AS samplingprotocol,
+    [seinetraw].[scientificName] AS scientificname,
+    [seinetraw].[scientificNameAuthorship] AS scientificnameauthorship,
+    [seinetraw].[sex],
+    " " AS sourceprimarykey,
+    [seinetraw].[specificEpithet] AS specificepithet,
+    [seinetraw].[startDayOfYear] AS startdayofyear,
+    [seinetraw].[stateProvince] AS stateprovince,
+    [seinetraw].[substrate],
+    [seinetraw].[subtype],
+    [seinetraw].[taxonRank] AS taxonrank,
+    " " AS thumbnailuri,
+    [seinetraw].[taxonID] AS tidinterpreted,
+    [seinetraw].[typeStatus] AS typestatus,
+    [seinetraw].[verbatimAttributes] AS verbatimattributes,
+    [seinetraw].[verbatimCoordinates] AS verbatimcoordinates,
+    [seinetraw].[verbatimElevation] AS verbatimelevation,
+    [seinetraw].[verbatimEventDate] AS verbatimeventdate,
+    " " AS verbatimscientificname,
+    " " AS weburi,
+    [seinetraw].[Year]
+FROM
+    seinetraw;
