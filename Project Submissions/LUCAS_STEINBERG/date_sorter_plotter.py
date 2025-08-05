@@ -75,7 +75,7 @@ def plot_dates(entries):
 
     # Plot 
     plot.figure(figsize=(10,5))
-    plot.bar(sorted_years, counts, color='black', width=1.5)
+    plot.bar(sorted_years, counts, color='black')
     plot.xlabel('Year of Publication', fontsize=14)
     plot.ylabel('Number of Entries', fontsize=14)
     plot.title('Bibliographic Entries by Year of Publication', fontsize=18)
