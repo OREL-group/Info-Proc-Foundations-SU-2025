@@ -61,7 +61,6 @@ SELECT
         )
     ) AS author1_mname,
 
-
 -- Input last name for known common collectors based on recordedBy data
     IIF(
         [seinetraw].[recordedBy] = "Gordon C. Tucker",
@@ -186,7 +185,6 @@ SELECT
     [seinetraw].[country],
     [seinetraw].[county],
     "FALSE" AS createopenurl,
-
 
 -- Change 0/1 binary to yes/no for cultivation status
     IIF(
