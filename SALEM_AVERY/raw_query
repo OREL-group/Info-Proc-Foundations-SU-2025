@@ -231,11 +231,7 @@ SELECT
     [seinetraw].[kingdom],
     [seinetraw].[language],
     [seinetraw].[lifestage],
-     IIF(
-        [seinetraw].[localitySecurity] = 1,
-        " ",
-        [seinetraw].[locality]
-    ) AS locality,
+    IIF([seinetraw].[localitySecurity] = 1, " ", [seinetraw].[locality]) AS locality,
     [seinetraw].[localitySecurity] AS localitysecurity,
     [seinetraw].[localitySecurityReason] AS localitysecurityreason,
     [seinetraw].[maximumElevationInMeters] AS maximumelevationinmeters,
