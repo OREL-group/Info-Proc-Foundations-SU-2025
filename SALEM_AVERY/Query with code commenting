@@ -254,11 +254,7 @@ SELECT
     [seinetraw].[lifestage],
 
 -- Remove locality data from secured records
-    IIF(
-        [seinetraw].[localitySecurity] = 1,
-        " ",
-        [seinetraw].[locality]
-    ) AS locality,
+    IIF([seinetraw].[localitySecurity] = 1, " ", [seinetraw].[locality]) AS locality,
 
     [seinetraw].[localitySecurity] AS localitysecurity,
     [seinetraw].[localitySecurityReason] AS localitysecurityreason,
