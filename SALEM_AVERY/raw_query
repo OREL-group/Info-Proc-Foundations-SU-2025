@@ -1,6 +1,6 @@
 SELECT
     [seinetraw].[scientificname] & " " & [seinetraw].[scientificnameauthorship] AS title,
-    "http://library.eiu.edu/keepupload/herbarium/pdf/" & [seinetraw].[catalogNumber] & ".pdf" AS fulltext_url,
+    " " AS fulltext_url,
     [seinetraw].[thumbnailAccessURI] AS cover_image_url,
     " " AS additional_files,
     " " AS keywords,
@@ -12,7 +12,7 @@ SELECT
             [seinetraw].[recordedBy] = "Ebinger, John E.",
             "John",
             IIF(
-                [seinetraw].[recordedBy] = "Edgin, Bob, ",
+                [seinetraw].[recordedBy] = "Edgin, Bob",
                 "Bob",
                 IIF(
                     [seinetraw].[recordedBy] = "Phillippe, Loy R.",
@@ -20,10 +20,14 @@ SELECT
                     IIF(
                         [seinetraw].[recordedBy] = "Thut, Hiram Frederick, 1900-1974 ",
                         "Hiram",
-                        IIF(
-                            [seinetraw].[recordedBy] = "McClain, W. E.",
-                            "William",
-                            [seinetraw.recordedBy]
+                         IIF(
+                            [seinetraw].[recordedBy] = "Dolbeare, Ben", 
+                            "Ben",
+                            IIF(
+                                [seinetraw].[recordedBy] = "McClain, W. E.",
+                                "William",
+                                [seinetraw.recordedBy]
+                            )
                         )
                     )
                 )
@@ -46,7 +50,7 @@ SELECT
                         [seinetraw].[recordedBy] = "McClain, W. E.",
                         "E.",
                         " "
-                    )
+                     )
                 )
             )
         )
@@ -58,7 +62,7 @@ SELECT
             [seinetraw].[recordedBy] = "Ebinger, John E.",
             "Ebinger",
             IIF(
-                [seinetraw].[recordedBy] = "Edgin, Bob, ",
+                [seinetraw].[recordedBy] = "Edgin, Bob",
                 "Edgin",
                 IIF(
                     [seinetraw].[recordedBy] = "Phillippe, Loy R.",
@@ -67,18 +71,70 @@ SELECT
                         [seinetraw].[recordedBy] = "Thut, Hiram Frederick, 1900-1974",
                         "Thut",
                         IIF(
+                            [seinetraw].[recordedBy] = "Dolbeare, Ben", 
+                            "Dolbeare",
+                            IIF(
+                                [seinetraw].[recordedBy] = "McClain, W. E.",
+                                "McClain",
+                                " "
+                            )
+                        )
+                     )
+                )
+            )
+        )
+    ) AS author1_lname,
+    " " AS author1_suffix,
+    IIF(
+        [seinetraw].[recordedBy] = "Gordon C. Tucker",
+        "gctucker@eiu.edu",
+        IIF(
+            [seinetraw].[recordedBy] = "Ebinger, John E.",
+            "jeebinger@eiu.edu",
+            IIF(
+                [seinetraw].[recordedBy] = "Edgin, Bob",
+                "Bob.Edgin@illinois.gov",
+                IIF(
+                    [seinetraw].[recordedBy] = "Phillippe, Loy R.",
+                    "rickp@inhs.illinois.edu",
+                    IIF(
+                        [seinetraw].[recordedBy] = "Dolbeare, Ben",
+                        "ben.dolbeare@illinois.gov",
+                        IIF(
                             [seinetraw].[recordedBy] = "McClain, W. E.",
-                            "McClain",
+                            "McClainWE@missouri.edu",
                             " "
                         )
                     )
                 )
             )
         )
-    ) AS author1_lname,
-    " " AS author1_suffix,
-    " " AS author1_email,
-    " " AS author1_institution,
+    ) AS author1_email,
+     IIF(
+        [seinetraw].[recordedBy] = "Gordon C. Tucker",
+        "Eastern Illinois University",
+        IIF(
+            [seinetraw].[recordedBy] = "Ebinger, John E.",
+            "Eastern Illinois University",
+            IIF(
+                [seinetraw].[recordedBy] = "Edgin, Bob",
+                "Illinois Nature Preserves Commission",
+                IIF(
+                    [seinetraw].[recordedBy] = "Phillippe, Loy R.",
+                    "Illinois Natural History Survey",
+                    IIF(
+                        [seinetraw].[recordedBy] = "Dolbeare, Ben",
+                        "Illinois Department of Natural Resources",
+                        IIF(
+                            [seinetraw].[recordedBy] = "McClain, W. E.",
+                            "University of Missouri, Columbia",
+                            " "
+                        )
+                    )
+                )
+            )
+        )
+    ) AS author1_institution,
     "FALSE" AS author1_is_corporate,
     " " AS author2_fname,
     " " AS author2_mname,
