@@ -1,0 +1,94 @@
+!pip install ics
+
+from datetime import datetime, timedelta # the date time module supplies classes for manipulating dates and times
+import random # the random module provides tools for making random selections
+from ics import Calendar, Event
+
+
+# define cycle phases
+cycle_phases = {
+"Menstrual": range(1,6),
+"Follicular": range(6, 14),
+"Ovulation": range(14, 18),
+"Luteal": range(18, 29), # 28 day cycle because 29 is not included
+}
+
+# define workouts
+workouts = {
+    "Upper Body Strength" : ["Shoulder Press", "Bicep Curl", "Hammer Curl", "Bent Over Row", "One Arm Bent Over Row"],
+    "Lower Body Strength" : ["Squat", "Deadlift", "Hip Thrust", "Lunges"],
+    "Cardio" : ["Power Flow", "Power Pilates"],
+    "Recovery" : ["Slow Flow", "Gentle Pilates"],
+    "Meditate" : ["Meditate"],
+    "Walk" : ["Walk"]
+}
+
+# create random sample of workouts
+upper_body_exercises = random.sample(workouts["Upper Body Strength"], 3)
+lower_body_exercises = random.sample(workouts["Lower Body Strength"], 3)
+cardio_exercises = random.sample(workouts["Cardio"], 1)
+recovery_exercises = random.sample(workouts["Recovery"], 1)
+
+# Start date of plan based on cycle
+start_date = datetime.today()
+days = 29 # 28 day cycle
+cycle_day = input("What day of your cycle are you on: ") # returns string
+
+try: # convert user input to an integer
+  current_cycle_day = int(cycle_day)
+except ValueError:
+    print("Converting input to an integer.") # had Invalid input. Please enter a number. but the program was still continuing after quit instead of having the user restart the program
+    quit()
+
+# Create a Calendar object
+calendar = Calendar()
+
+
+for i in range(days):
+  current_date = start_date + timedelta(days=i)
+  weekday = current_date.weekday()
+  current_cycle_day = (current_cycle_day + i -1) % 28 + 1
+
+# determine cycle phase
+for phase, days_range in cycle_phases.items(): # returns a view object, which contains the key-value pairs of the dictionary, as tuples in a list
+  if current_cycle_day in days_range:
+    current_phase = phase
+    break
+# create events
+event = Event()
+event.begin = current_date
+
+# establish weekend rest days
+if weekday in [5, 6]:
+  event.name = "Rest Day"
+  event.description = "Take a full rest day."
+
+# workout selection
+if current_phase == "Menstrual":
+  event.name = "Recovery Day"
+  event.description = recovery_exercises + ["Meditate"]
+elif current_phase == "Follicular": 
+  if current_cycle_day % 2 == 0:
+    event.name = "Full Body Strength."
+    event.description = upper_body_exercises + lower_body_exercises
+  else:
+      event.name = "Cardio"
+      event.description = cardio_exercises + ["Walk"]
+elif current_phase == "Ovulation":
+    event.name = "Full Body Strength + Cardio"
+    event.description = upper_body_exercises + lower_body_exercises + ["Walk"]
+elif current_phase == "Luteal":
+    if current_cycle_day % 2 == 0:
+        event.name = "Active Recovery"
+        event.description = recovery_exercises = ["Walk"]
+    else:
+        event.name = "Active Recovery"
+        event.description = ["Walk"] + ["Meditate"]
+
+calendar.events.add(event)
+
+# save as ics file
+with open("workout_schedule.ics", "w") as f:
+  f.writelines(calendar)
+
+# program ends after last line is executed
