@@ -26,6 +26,7 @@ class Timer:
             return self.sumtime
 
     def look_pretty(self):
+        # presents the time in 00:00:00 format
         if self.running:
             seconds = time.time() - self.starttime + self.sumtime
         else:
@@ -33,6 +34,7 @@ class Timer:
         hr_part = int(int(seconds / 60 ) /60)
         min_part = int(seconds / 60) - int(int(seconds / 60 ) /60) * 60
         sec_part = int(seconds - min_part*60)
+        # TODO create a function to add leading zeroes
         hr_str = str(hr_part) if hr_part > 9 else "0" + str(hr_part)
         min_str = str(min_part) if min_part > 9 else "0" + str(min_part)
         sec_str = str(sec_part) if sec_part > 9 else "0" + str(sec_part)
