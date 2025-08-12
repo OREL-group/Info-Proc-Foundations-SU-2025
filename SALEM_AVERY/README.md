@@ -1,9 +1,9 @@
 ## Database Crosswalk Project in SQL
 
-This code is meant to take an aggregate of records belonging to Eastern Illinois University's herbarium collection currently available and hosted by IDigBio/SEInet and make them compatible for upload in the university library's "Keep" for expanding access to a wider audience. The main process being run automates the transfer of data to a Darwin Core compliant metadata scheme through the use of Microsoft Access Database. Two versions of the code are included in the directory, one with commenting included and another with only the raw query due to restrictions within Access for allowable commentary. A sample spreadsheet of records as an excel file is also included for downloading & testing the code. The steps to do so are as follows:
-* Download seinetraw.xlsx from the project directory
+This code is meant to take an aggregate of records belonging to Eastern Illinois University's herbarium collection currently available and hosted by IDigBio/SEInet and make them compatible for upload in the university library's "Keep" for expanding access to a wider audience. The main process being run automates the transfer of data to a Darwin Core compliant metadata scheme through the use of Microsoft Access Database. Two versions of the code are included in the directory, one with commenting included and another with only the raw query due to restrictions within Access for allowable commentary. A sample spreadsheet of records as a .csv file is also included for downloading & testing the code. The steps to do so are as follows:
+* Download seinetraw.csv from the project directory
 * Open a blank database in Microsoft Access
-* Under the "External Data" tab, select New Data Source > From File > Excel and import seinetraw.xlsx as a new table
+* Under the "External Data" tab, select New Data Source > From File > Excel and import seinetraw.csv as a new table
 * Select "Show Worksheets" and press next
 * Select "First Row Contains Column Headings" and press next
 * Do not edit field data types and press next (this is something I have to edit for the actual records, but isn't needed for an example)
