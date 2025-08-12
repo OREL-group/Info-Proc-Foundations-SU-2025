@@ -10,6 +10,11 @@ It fetches (maximum) 15-minute delayed data from **Alpha Vantage** and **FRED**,
 ## Quick Start
 
 ```bash
+https://bob-sample-stock-analysis.streamlit.app
+```
+**OR**
+
+```bash
 # 1) Python 3.10+ recommended
 python -V
 
