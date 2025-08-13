@@ -10,7 +10,7 @@ A simple python tool to scan files for sensitive information like Social Securit
 
 ## How It Works
 
-The scanner loads each file using a file-specific class like ExcelScanner or TxtScanner, then checks every cell, line, or word for sensitive information pattern matches.
+The scanner loads each file using a file-specific class like `ExcelScanner` or `TxtScanner`, then checks every cell, line, or word for sensitive information pattern matches.
 
 ## Folders
 
