@@ -19,7 +19,7 @@ def main():
     elif file_path.endswith(".csv"):
         scanner = CsvScanner(file_path)
     else:
-        scanner = TxtScanner(file_path)
+        scanner = TxtScanner(file_path)  # TxtScanner is the default scanner for all other file types
     scanner.scan()
 
 
