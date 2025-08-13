@@ -1,3 +1,6 @@
+# TxtScanner is the default scanner for all files that do not match current supported file types
+# TODO: Additional refinement is needed to properly handle all non-supported file types and patterns search  
+
 import re
 
 import pandas as pd
