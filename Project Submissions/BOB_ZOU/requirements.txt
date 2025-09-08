@@ -1,0 +1,9 @@
+streamlit
+pandas
+numpy
+requests
+fredapi
+matplotlib
+scipy
+python-dateutil
+openpyxl
